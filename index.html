@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gooey Cookies — A Little Bite, A Lot of Happines.</title>
+  <meta name="description" content="Gooey Cookies Madiun: soft cookies lumer premium. Pilih menu, atur tanggal & jam sendiri, lalu kirim pesanan via WhatsApp." />
+  <meta name="theme-color" content="#FFF8F0" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#/" class="nav-logo" aria-label="Gooey Cookies - Beranda"><img src="images/logo.png" alt="Gooey Cookies" /></a>
+      <nav class="nav-links" id="navLinks" aria-label="Navigasi utama">
+        <a href="#/" data-route=""><span class="ni">🏠</span>Beranda</a>
+        <a href="#/menu" data-route="menu"><span class="ni">🍪</span>Menu</a>
+        <a href="#/testimoni" data-route="testimoni"><span class="ni">💬</span>Testimoni</a>
+        <a href="#/cara-pesan" data-route="cara-pesan"><span class="ni">📝</span>Cara Pesan</a>
+        <a href="#/faq" data-route="faq"><span class="ni">❓</span>FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="cart-btn" id="openCart" aria-label="Buka keranjang">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Buka menu navigasi" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+  </header>
+  <div class="nav-dim" id="navDim"></div>
+
+  <main id="app">
+
+    <!-- ===================== BERANDA ======================= -->
+    <section class="page" data-page="beranda">
+
+      <!-- HERO (sesuai contoh screenshot) -->
+      <div class="hero" id="hero">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-crumbs" id="heroCrumbs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="container hero-inner">
+          <span class="hero-badge">🍪 Soft Cookies Premium · Madiun</span>
+          <h1 class="hero-title">
+            <span class="l1" data-split>A Little Bite,</span>
+            <span class="l2" data-split>A Lot of Happines.</span>
+          </h1>
+          <p class="hero-sub">Cookies tebal, lembut, dan lumer di setiap gigitan — dipanggang segar setiap hari.</p>
+          <div class="hero-cta">
+            <a href="#/menu" class="btn btn-primary">Lihat Menu</a>
+            <a href="#/cara-pesan" class="btn btn-ghost-light">Cara Pesan</a>
+          </div>
+         
+        </div>
+      </div>
+
+      <!-- MARQUEE + lelehan cokelat -->
+      <div class="marquee melt" style="--hc: var(--choco)" id="homeNext">
+        <div class="marquee-track" aria-hidden="true">
+          <span>🍪 Fresh from the oven</span><span>🧈 Butter premium</span><span>🍫 Cokelat asli</span><span>🚚 Siap antar</span><span>💛 Lumer di setiap gigitan</span><span>🎁 Terima hampers</span>
+          <span>🍪 Fresh from the oven</span><span>🧈 Butter premium</span><span>🍫 Cokelat asli</span><span>🚚 Siap antar</span><span>💛 Lumer di setiap gigitan</span><span>🎁 Terima hampers</span>
+        </div>
+        <div class="drip" data-drip="3"></div>
+      </div>
+
+      <!-- STATS -->
+      <div class="container">
+        <div class="stats reveal">
+          <div class="stat"><strong data-count="6">0</strong><span>Varian Cookies</span></div>
+          <div class="stat"><strong data-count="2000" data-suffix="+" data-final="2K+">0</strong><span>Pelanggan Bahagia</span></div>
+          <div class="stat"><strong data-count="4.9" data-decimals="1" data-suffix="★">0</strong><span>Rating Pelanggan</span></div>
+          <div class="stat"><strong>09–21</strong><span>Buka Setiap Hari</span></div>
+        </div>
+      </div>
+
+      <!-- FAVORIT -->
+      <div class="block">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Paling Dicari</span>
+            <h2>Favorit Pelanggan</h2>
+            <p>Varian favorit pelanggan yang wajib kamu coba! Jangan sampai kehabisan.</p>
+          </div>
+          <div class="product-grid" id="favGrid"></div>
+          <div class="center reveal"><a href="#/menu" class="btn btn-primary">Lihat Semua Menu →</a></div>
+        </div>
+      </div>
+
+      <!-- PROMO -->
+      <div class="container">
+        <div class="promo reveal">
+          <div class="promo-text">
+            <span class="promo-tag">Gooey untuk Momen Spesial</span>
+            <h3>Butuh cookies untuk acara spesial dalam jumlah besar?</h3>
+            <p>Gooey Cookies siap menerima pesanan untuk hampers dan berbagai perayaan spesial kamu. Agar pesananmu siap tepat waktu, lakukan pemesanan minimal H-3 ya!</p>
+            <a href="https://wa.me/6289514308895?text=Halo%20Gooey%20Cookies!%20Saya%20mau%20tanya%20pesanan%20hampers." target="_blank" rel="noopener" class="btn btn-light">Tanya via WhatsApp</a>
+          </div>
+          <div class="promo-visual">
+            <img src="images/lotus-cheez.png" class="promo-cookie c1" alt="Lotus Cheez" loading="lazy" />
+            <img src="images/choco-melt.png" class="promo-cookie c2" alt="Choco Melt" loading="lazy" />
+            <img src="images/goo-jump.png" class="promo-goo" alt="" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <!-- MASKOT -->
+      <div class="block">
+        <div class="container">
+          <div class="mascot-wrap">
+            <div class="section-head reveal">
+              <span class="eyebrow">Kenalan, yuk!</span>
+              <h2>Ini Goo, si Cookie Lumer</h2>
+              <p>Maskot kecil kami yang selalu siap bikin harimu lebih manis. Coba sentuh Goo!</p>
+            </div>
+            <div class="mascot-sheet">
+              <figure class="goo-card reveal" tabindex="0"><span class="bubble"></span><img src="images/goo-wave.png" class="anim-wave" alt="Goo menyapa" loading="lazy" /><figcaption>Halo!</figcaption></figure>
+              <figure class="goo-card reveal" tabindex="0"><span class="bubble"></span><img src="images/goo-jump.png" class="anim-jump" alt="Goo melompat" loading="lazy" /><figcaption>Excited</figcaption></figure>
+              <figure class="goo-card reveal" tabindex="0"><span class="bubble"></span><img src="images/goo-love.png" class="anim-pulse" alt="Goo memeluk cookie" loading="lazy" /><figcaption>Cookie Love</figcaption></figure>
+              <figure class="goo-card reveal" tabindex="0"><span class="bubble"></span><img src="images/goo-wink.png" class="anim-tilt" alt="Goo mengantar pesanan" loading="lazy" /><figcaption>Siap Antar</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOKASI KAMI (sesuai contoh screenshot) -->
+      <div class="loc-band melt" style="--hc: var(--peach)" id="lokasi">
+        <div class="container">
+          <div class="loc-head reveal">
+            <span class="eyebrow">Lokasi Kami</span>
+            <h2>Mampir ke Gooey Cookies</h2>
+            <p>Ambil pesananmu langsung di toko, atau chat dulu lewat WhatsApp.</p>
+          </div>
+        </div>
+        <div class="drip" data-drip="5"></div>
+      </div>
+      <div class="container">
+        <div class="loc-grid reveal">
+          <div class="loc-card">
+            <h3>Gooey Cookies Madiun</h3>
+            <div class="loc-item"><small>Alamat</small><p>Jl. Cokroaminoto No.12, Kota Madiun, Jawa Timur</p></div>
+            <div class="loc-item"><small>WhatsApp</small><a href="https://wa.me/6289514308895" target="_blank" rel="noopener">0895-1430-8895</a></div>
+            <div class="loc-item"><small>Jam Buka</small><p>Setiap hari 09.00 – 21.00 WIB <span class="open-status" data-open-status>…</span></p></div>
+            <div class="btn-row">
+              <a href="https://wa.me/6289514308895?text=Halo%20Gooey%20Cookies!" target="_blank" rel="noopener" class="btn btn-primary">Chat WhatsApp</a>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Jl.%20Cokroaminoto%20No.12%2C%20Kota%20Madiun%2C%20Jawa%20Timur" target="_blank" rel="noopener" class="btn btn-outline">Lihat Rute</a>
+            </div>
+          </div>
+          <div class="loc-map"><iframe title="Peta lokasi Gooey Cookies" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Jl.%20Cokroaminoto%20No.12%2C%20Kota%20Madiun%2C%20Jawa%20Timur&z=16&output=embed"></iframe></div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="block">
+        <div class="container">
+          <div class="cta-strip reveal">
+            <img src="images/goo-wink.png" alt="" class="cta-goo anim-tilt" loading="lazy" />
+            <div>
+              <h3>Pesan cuma 4 langkah!</h3>
+              <p>Pilih cookies, atur tanggal & jam sendiri, kirim via WhatsApp, selesai.</p>
+            </div>
+            <a href="#/cara-pesan" class="btn btn-primary">Lihat Cara Pesan</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= MENU ======================== -->
+    <section class="page" data-page="menu">
+      <div class="page-hero melt theme-menu" style="--hc: var(--caramel-hd)">
+        <div class="ph-clip"><div class="ph-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <button class="back-btn" data-back aria-label="Kembali"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button>
+        <div class="container ph-inner">
+          <span class="ph-pill">🍪 Menu Kami</span>
+          <h1>Pilih cookies <span class="hl">favoritmu</span></h1>
+          <p>Klik gambar untuk melihat detail, atau langsung tekan “+ Tambah”. Semua dipanggang fresh setiap hari.</p>
+
+          <div class="cookie-track" id="cookieTrack" aria-label="Kenalan dengan varian cookies">
+            <img src="images/goo-jump.png" class="ct-goo" id="ctGoo" alt="Goo melompat ke cookies" />
+            <div class="ct-line"><span class="ct-fill" id="ctFill"></span></div>
+            <!-- tombol cookies dibuat otomatis dari daftar PRODUCTS di script.js -->
+          </div>
+          <button class="ct-caption" id="ctCaption" type="button">🍪 Gooey OG · Chocolate chunk · Rp18.000</button>
+        </div>
+        <div class="drip" data-drip="1"></div>
+      </div>
+
+      <div class="block after-drip">
+        <div class="container">
+          <div class="product-grid" id="productGrid"></div>
+
+          <div class="info-row">
+            <div class="info-card reveal"><span class="info-ico">🔥</span><h4>Hangatkan 10 detik</h4><p>Microwave sebentar dan cookies kembali lumer seperti baru keluar oven.</p></div>
+            <div class="info-card reveal"><span class="info-ico">🫙</span><h4>Tahan 3–7 hari</h4><p>3 hari di suhu ruang dalam wadah tertutup, 7 hari di kulkas.</p></div>
+            <div class="info-card reveal"><span class="info-ico">🎁</span><h4>Hampers & Acara</h4><p>Pesanan di atas 30 pcs? Hubungi kami minimal H-3 sebelum acara.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TESTIMONI ====================== -->
+    <section class="page" data-page="testimoni">
+      <div class="page-hero melt theme-testi" style="--hc: var(--caramel-hd)">
+        <div class="ph-clip">
+          <span class="float-emo e1">⭐</span><span class="float-emo e2">💛</span><span class="float-emo e3">⭐</span><span class="float-emo e4">💬</span><span class="float-emo e5">🧡</span>
+          <img src="images/goo-love.png" class="ph-goo" alt="" />
+          <span class="hx-bubble b1">“Enak!”</span><span class="hx-bubble b2">“Lumer!”</span><span class="hx-bubble b3">“Mantap!”</span><span class="hx-ring r1"></span><span class="hx-ring r2"></span>
+        </div>
+        <button class="back-btn" data-back aria-label="Kembali"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button>
+        <div class="container ph-inner">
+          <span class="ph-pill">💬 Testimoni</span>
+          <h1>Kata Mereka yang <span class="hl">Sudah Mencoba</span></h1>
+          <p>Cerita jujur dari pelanggan Gooey Cookies di Madiun dan sekitarnya.</p>
+        </div>
+        <div class="drip" data-drip="2"></div>
+      </div>
+
+      <div class="block after-drip">
+        <div class="container">
+          <div class="stats three reveal">
+            <div class="stat"><strong data-count="2000" data-suffix="+" data-final="2K+">0</strong><span>Pelanggan</span></div>
+            <div class="stat"><strong data-count="4.9" data-decimals="1" data-suffix="★">0</strong><span>Rating Rata-rata</span></div>
+            <div class="stat"><strong data-count="6">0</strong><span>Varian Favorit</span></div>
+          </div>
+
+          <div class="section-head reveal">
+            <span class="eyebrow">Testimoni Pelanggan</span>
+            <h2>Cerita Manis dari Pelanggan</h2>
+            <p>Geser untuk membaca, dan tekan ♥ kalau kamu setuju!</p>
+          </div>
+          <div class="carousel" id="carousel">
+            <button class="car-btn prev" id="carPrev" aria-label="Sebelumnya">‹</button>
+            <div class="car-viewport"><div class="car-track" id="carTrack"></div></div>
+            <button class="car-btn next" id="carNext" aria-label="Berikutnya">›</button>
+          </div>
+          <div class="car-dots" id="carDots"></div>
+
+          <div class="cta-strip reveal">
+            <img src="images/goo-love.png" alt="" class="cta-goo anim-pulse" loading="lazy" />
+            <div>
+              <h3>Sudah coba Gooey Cookies?</h3>
+              <p>Ceritakan pengalamanmu di sini!</p>
+            </div>
+            <a href="https://wa.me/6289514308895?text=Halo%20Gooey%20Cookies!%20Saya%20mau%20kirim%20testimoni%3A%20" target="_blank" rel="noopener" class="btn btn-primary">Kirim Testimoni</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CARA PESAN ===================== -->
+    <section class="page" data-page="cara-pesan">
+      <div class="page-hero melt theme-steps" style="--hc: var(--caramel-hd)">
+        <div class="ph-clip"><span class="hx-ico i1">🛒</span><span class="hx-ico i2">🍪</span><span class="hx-ico i3">📦</span><span class="hx-ico i4">💬</span><span class="hx-road"></span><span class="hx-ring r1"></span><span class="hx-ring r2"></span><div class="ph-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <button class="back-btn" data-back aria-label="Kembali"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button>
+        <div class="container ph-inner">
+          <span class="ph-pill">📝 Cara Pesan</span>
+          <h1>Pesan cookies <span class="hl">cuma 4 langkah</span></h1>
+          <p>Semua pesanan dikonfirmasi langsung oleh admin lewat WhatsApp, jadi kamu tahu pasti kapan cookies-mu siap.</p>
+
+          <div class="timeline" id="timeline" aria-label="4 langkah pemesanan">
+            <img src="images/goo-wink.png" class="tl-goo" id="tlGoo" alt="Goo mengantar pesanan" />
+            <div class="tl-line"><span class="tl-fill" id="tlFill"></span></div>
+            <button class="tl-step" data-step="0"><span class="tl-dot">1</span><span class="tl-label">🛒 Pilih</span></button>
+            <button class="tl-step" data-step="1"><span class="tl-dot">2</span><span class="tl-label">🗓️ Jadwal</span></button>
+            <button class="tl-step" data-step="2"><span class="tl-dot">3</span><span class="tl-label">💬 WhatsApp</span></button>
+            <button class="tl-step" data-step="3"><span class="tl-dot">4</span><span class="tl-label">💳 Bayar</span></button>
+          </div>
+          <p class="tl-caption" id="tlCaption">Pilih cookies favoritmu di halaman Menu.</p>
+        </div>
+        <div class="drip" data-drip="4"></div>
+      </div>
+
+      <div class="block after-drip">
+        <div class="container">
+          <div class="order-heading reveal">
+  <span class="order-pill">Langkah demi langkah</span>
+  <h2>Begini cara pesannya</h2>
+</div>
+
+<div class="step-list order-timeline">
+
+  <article class="step-card reveal">
+    <span class="step-num">1</span>
+    <div class="step-icon">♧</div>
+    <h3>Pilih cookies</h3>
+    <p>Buka halaman <a href="#/menu">Menu</a>, lalu tekan tombol <b>+</b> untuk memasukkan cookies ke keranjang.</p>
+    <img src="images/goo-wave.png" class="step-mascot" alt="Goo menyapa">
+  </article>
+
+  <article class="step-card reveal">
+    <span class="step-num">2</span>
+    <div class="step-icon">▦</div>
+    <h3>Isi data & jadwal</h3>
+    <p>Buka keranjang, tekan Checkout. Pilih ambil atau antar, lalu tentukan tanggal dan jamnya.</p>
+    <img src="images/goo-jump.png" class="step-mascot" alt="Goo melompat">
+  </article>
+
+  <article class="step-card reveal">
+    <span class="step-num">3</span>
+    <div class="step-icon">♡</div>
+    <h3>Kirim via WhatsApp</h3>
+    <p>Periksa kembali pesananmu, lalu tekan <b>Kirim via WhatsApp</b>. Admin akan membantu konfirmasi pesanan.</p>
+    <img src="images/goo-love.png" class="step-mascot" alt="Goo membawa hati">
+  </article>
+
+  <article class="step-card reveal">
+    <span class="step-num">4</span>
+    <div class="step-icon">✓</div>
+    <h3>Bayar & nikmati</h3>
+    <p>Selesaikan pembayaran sesuai metode pilihanmu. Setelah dikonfirmasi, cookies siap dinikmati!</p>
+    <img src="images/goo-wink.png" class="step-mascot" alt="Goo berkedip">
+  </article>
+
+</div>
+
+          <div class="pay-box reveal">
+            <h3>Metode Pembayaran</h3>
+            <div class="pay-chips">
+              <span>🏦 Transfer Bank<small>BCA · BRI · Mandiri</small></span>
+              <span>📱 QRIS<small>Semua aplikasi</small></span>
+              <span>👛 E-Wallet<small>GoPay · OVO · DANA</small></span>
+              <span>💵 COD / Tunai<small>Saat pengambilan</small></span>
+            </div>
+          </div>
+
+          <div class="steps-cta reveal">
+            <div class="steps-cta-text">
+              <span class="eyebrow">A little happiness awaits!</span>
+              <h3>Sudah tahu mau pilih yang mana?</h3>
+              <p>Yuk, masukkan cookies favoritmu ke keranjang!</p>
+              <div class="btn-row">
+                <a href="#/menu" class="btn btn-primary">Mulai Pilih Cookies</a>
+                <button class="btn btn-outline" data-open-cart>Buka Keranjang</button>
+              </div>
+            </div>
+            <div class="steps-cta-mascot">
+              <img src="images/goo-love.png" alt="Maskot Goo Cookie Love" class="cookie-love" loading="lazy" />
+              <span class="love-sparkle">♥</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== FAQ ======================== -->
+    <section class="page" data-page="faq">
+      <div class="page-hero melt theme-faq" style="--hc: var(--caramel-hd)">
+  <div class="ph-clip faq-decor">
+    <span class="float-q q1">?</span>
+    <span class="float-q q2">?</span>
+    <span class="float-q q3">?</span>
+    <span class="float-q q4">?</span>
+    <span class="float-q q5">?</span>
+  </div>
+
+  <button class="back-btn" data-back aria-label="Kembali">
+    <svg viewBox="0 0 24 24" width="24" height="24"
+      fill="none" stroke="currentColor" stroke-width="2.6"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5"/>
+      <path d="m12 19-7-7 7-7"/>
+    </svg>
+  </button>
+
+  <div class="container faq-hero-inner">
+
+    <div class="faq-mascot-area">
+      <div class="faq-speech">
+        Tanya aja, jangan malu!
+      </div>
+
+      <img
+        src="images/goo-wink.png"
+        class="faq-mascot"
+        alt="Maskot Gooey Cookies"
+      />
+    </div>
+
+    <div class="faq-title-area">
+      <span class="faq-pill">❓ FAQ</span>
+
+      <h1>
+        Pertanyaan yang
+        <span>sering ditanyakan</span>
+      </h1>
+
+      <p>
+        Semua yang perlu kamu tahu sebelum memesan,
+        mulai dari jadwal sampai pembayaran.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="drip" data-drip="6"></div>
+</div>
+      <div class="block after-drip">
+        <div class="container faq-wrap">
+          
+          <div class="accordion faq-list" id="accordion">
+            <div class="acc-item reveal"><button class="acc-head">Di mana bisa membeli soft cookies di area Madiun dan sekitarnya? <span>+</span></button><div class="acc-body"><p>Kamu bisa membeli soft cookies dari Gooey Cookies yang berlokasi di Kota Madiun, Jawa Timur. Kami menyediakan berbagai pilihan soft cookies premium. Gooey Cookies menawarkan berbagai varian, mulai dari Gooey OG, Cookies N’ Cream, Choco Melt, Caramel Hug, Gooey S’more, hingga Lotus Cheez.</p></div></div>
+            <div class="acc-item reveal"><button class="acc-head">Di mana lokasi outlet Gooey Cookies ?<span>+</span></button><div class="acc-body"><p>Berlokasi di Jl. Cokroaminoto No.12, Kota Madiun, Jawa Timur. Buka setiap hari 09.00 – 21.00 WIB. Lihat peta di bagian <a href="#/lokasi">Lokasi Kami</a> di Beranda.</p></div></div>
+             <div class="acc-item reveal"><button class="acc-head">Bagaimana cara memesan Gooey Cookies?<span>+</span></button><div class="acc-body"><p>Kamu bisa pilih cookies di halaman Menu, tekan “+ Tambah”, lalu buka keranjang dan klik Checkout. Isi data, pilih tanggal & jam, lalu tekan “Kirim via WhatsApp”.</p></div></div>
+            <div class="acc-item reveal"><button class="acc-head">Apakah Gooey Cookies menyediakan layanan pengantaran?<span>+</span></button><div class="acc-body"><p>Ya! Kami menyediakan layanan pengantaran untuk area Kota Madiun dan sekitarnya.</p></div></div>
+            <div class="acc-item reveal"><button class="acc-head">Apakah melayani pemesanan untuk hampers maupun acara besar?<span>+</span></button><div class="acc-body"><p>Bisa! Kami menerima pesanan dalam jumlah besar untuk acara spesial kamu. Hubungi WhatsApp minimal H-3 untuk pemesanannya.</p></div></div>
+            <div class="acc-item reveal"><button class="acc-head">Berapa lama masa simpan Gooey Cookies?<span>+</span></button><div class="acc-body"><p>Bisa disimpan dan tahan 3 hari di suhu ruang dalam wadah tertutup dan 7 hari jika di kulkas. Hangatkan 10 detik di microwave agar kembali lumer.</p></div></div>
+            <div class="acc-item reveal"><button class="acc-head">Metode pembayaran apa saja yang tersedia?<span>+</span></button><div class="acc-body"><p>Transfer bank (BCA/BRI/Mandiri), QRIS, e-wallet (GoPay, OVO, DANA), dan COD/tunai (Bayar saat cookies diterima).</p></div></div>
+          </div>
+          <p class="faq-empty" id="faqEmpty" hidden>Masih bingung? Tanya langsung ke admin, yuk!</p>
+
+          <div class="cta-strip reveal">
+            <img src="images/goo-wave.png" alt="" class="cta-goo anim-wave" loading="lazy" />
+            <div>
+              <h3>Masih ada yang bikin penasaran?</h3>
+              <p>Admin kami siap jawab setiap hari pukul 09.00 – 21.00 WIB.</p>
+            </div>
+            <a href="https://wa.me/6289514308895?text=Halo%20Gooey%20Cookies!%20Saya%20mau%20tanya%20" target="_blank" rel="noopener" class="btn btn-primary">Chat Admin</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER (dengan lelehan) ================= -->
+  <footer class="footer" id="footer">
+    <div class="drip drip-top" data-drip="7" style="--hc: var(--bg)"></div>
+    <div class="container footer-grid">
+      <div>
+        <img src="images/logo.png" alt="Gooey Cookies" class="footer-logo" />
+        <p>A Little Bite, A Lot of Happines. Soft cookies premium yang tebal dan lumer, asli dari Madiun.</p>
+      </div>
+      <div>
+        <h4>Jelajahi</h4>
+        <ul class="footer-links">
+          <li><a href="#/">Beranda</a></li>
+          <li><a href="#/menu">Menu</a></li>
+          <li><a href="#/testimoni">Testimoni</a></li>
+          <li><a href="#/cara-pesan">Cara Pesan</a></li>
+          <li><a href="#/faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Lokasi</h4>
+        <p>Jl. Cokroaminoto No.12<br />Kota Madiun, Jawa Timur</p>
+        <a href="#/lokasi">Lihat Maps →</a>
+      </div>
+      <div>
+        <h4>Kontak</h4>
+        <p><a href="https://wa.me/6289514308895" target="_blank" rel="noopener">WhatsApp: 0895-1430-8895</a></p>
+        <p><a href="https://instagram.com/gooeycookies" target="_blank" rel="noopener">Instagram: @gooeycookies</a></p>
+        <p>Buka setiap hari 09.00 – 21.00</p>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Gooey Cookies. All Rights Reserved.</div>
+  </footer>
+
+  <!-- ================= PRODUCT MODAL ================= -->
+  <div class="overlay" id="productModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="pmName">
+      <button class="close-btn" data-close="productModal" aria-label="Tutup">×</button>
+      <img id="pmImg" src="" alt="" />
+      <div class="modal-body">
+        <h3 id="pmName"></h3>
+        <p class="pm-flavor" id="pmFlavor"></p>
+        <p id="pmDesc"></p>
+        <div class="pm-row">
+          <span class="price" id="pmPrice"></span>
+          <div class="qty"><button id="pmMinus" aria-label="Kurangi">−</button><span id="pmQty">1</span><button id="pmPlus" aria-label="Tambah">+</button></div>
+        </div>
+        <button class="btn btn-primary full" id="pmAdd">Tambah ke Keranjang</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CART ================= -->
+  <div class="backdrop" id="cartBackdrop"></div>
+  <aside class="cart" id="cart" aria-hidden="true" aria-label="Keranjang">
+    <div class="cart-head">
+      <h3>Keranjang</h3>
+      <button class="close-btn static" id="closeCart" aria-label="Tutup">×</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="row"><span>Subtotal</span><strong id="cartSubtotal">Rp0</strong></div>
+      <div class="row"><span>Ongkir</span><span class="muted">Dihitung saat checkout</span></div>
+      <div class="row total"><span>Total</span><strong id="cartTotal">Rp0</strong></div>
+      <button class="btn btn-primary full" id="checkoutBtn">Checkout</button>
+      <button class="btn btn-text full" id="clearCart">Kosongkan Keranjang</button>
+    </div>
+  </aside>
+
+  <!-- ================= CHECKOUT MODAL ================= -->
+  <div class="overlay" id="checkoutModal" aria-hidden="true">
+    <div class="modal wide" role="dialog" aria-modal="true" aria-labelledby="coTitle">
+      <button class="close-btn" data-close="checkoutModal" aria-label="Tutup">×</button>
+      <div class="modal-body">
+        <h3 id="coTitle">Checkout</h3>
+        <p class="co-sub">Lengkapi data di bawah, lalu kirim pesananmu lewat WhatsApp.</p>
+        <form id="checkoutForm" novalidate>
+          <label>Nama<input type="text" name="nama" required placeholder="Nama lengkap" autocomplete="name" /></label>
+          <label>Nomor WhatsApp<input type="tel" name="wa" required placeholder="08xxxxxxxxxx" autocomplete="tel" inputmode="tel" /></label>
+          <label>Metode Pemesanan
+            <select name="pengambilan" id="pickupSelect">
+              <option value="Diantar">Diantar (Delivery) +Rp10.000</option>
+              <option value="Ambil di Toko">Ambil di Toko (Gratis)</option>
+            </select>
+          </label>
+          <label id="addressField">Alamat<textarea name="alamat" rows="2" placeholder="Alamat lengkap pengantaran"></textarea></label>
+          <div class="two">
+            <label>Tanggal<input type="date" name="tanggal" id="dateInput" required /></label>
+            <label>Jam<input type="time" name="jam" id="timeInput" required min="09:00" max="21:00" step="900" /></label>
+          </div>
+          <p class="field-hint" id="scheduleHint">🕘 Pilih tanggal & jam sendiri · buka 09.00 – 21.00 WIB</p>
+          <label>Metode Pembayaran
+            <select name="bayar">
+              <option>Transfer Bank</option><option>QRIS</option><option>E-Wallet</option><option>COD / Tunai</option>
+            </select>
+          </label>
+          <label>Catatan<textarea name="catatan" rows="2" placeholder="Contoh: tolong dihangatkan, untuk kado"></textarea></label>
+          <div class="summary" id="checkoutSummary"></div>
+          <button type="submit" class="btn btn-primary full btn-wa">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>
+            Kirim via WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SUCCESS MODAL ================= -->
+  <div class="overlay" id="successModal" aria-hidden="true">
+    <div class="modal center" role="dialog" aria-modal="true">
+      <button class="close-btn" data-close="successModal" aria-label="Tutup">×</button>
+      <div class="modal-body">
+        <img src="images/goo-jump.png" class="success-goo anim-jump" alt="Goo" />
+        <h3>Pesanan Siap Dikirim!</h3>
+        <p id="successText"></p>
+        <button class="btn btn-primary full" data-close="successModal">Oke, Terima Kasih</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FLOATING ================= -->
+  <a class="float-wa" href="https://wa.me/6289514308895?text=Halo%20Gooey%20Cookies!" target="_blank" rel="noopener" aria-label="Chat WhatsApp">
+    <span class="float-tip">Chat yuk! 👋</span>
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>
+  </a>
+  <button class="back-top" id="backTop" aria-label="Kembali ke atas">↑</button>
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
